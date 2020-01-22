@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FontTextView">
+        <attr name="customFont" format="string"/>
+        <attr name="whiteBackground" format="boolean"/>
+    </declare-styleable>
+</resources>

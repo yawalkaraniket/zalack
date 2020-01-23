@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.zalack.android.R;
 
-public class LauncherActivity extends AppCompatActivity {
+public class LauncherActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

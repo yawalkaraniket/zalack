@@ -4,7 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.droidnet.DroidListener;
@@ -18,13 +18,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements DroidListener {
+public class MainActivity extends BaseActivity implements DroidListener {
 
     @BindView(R.id.activityMain_btn_Register)
     FontTextView registerButton;
 
     @BindView(R.id.activityMain_btn_SignIn)
     FontTextView signInButton;
+
+    @BindView(R.id.view_container)
+    ConstraintLayout viewContainer;
 
     MoviesViewModel moviesViewModel;
     private DroidNet mDroidNet;
@@ -41,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements DroidListener {
         mDroidNet = DroidNet.getInstance();
         mDroidNet.addInternetConnectivityListener(this);
 
+        setUpProgress(viewContainer);
+
     }
 
     @Override
@@ -50,13 +55,13 @@ public class MainActivity extends AppCompatActivity implements DroidListener {
 
     @OnClick(R.id.activityMain_btn_SignIn)
     public void signIn() {
-
+        showProgress();
         moviesViewModel.getAllMovies().observe(this, movieResponses -> {
-                    // All response comes hear.
-                });
-
-        Intent intent = new Intent(this, LoginActivity.class);
-        this.startActivity(intent);
+            // All response comes hear.
+            hideProgress();
+            Intent intent = new Intent(this, LoginActivity.class);
+            this.startActivity(intent);
+        });
     }
 
     @OnClick(R.id.activityMain_btn_Register)

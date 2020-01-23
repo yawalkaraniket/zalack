@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity implements DroidListener {
+public class LoginActivity extends BaseActivity implements DroidListener {
 
     @BindView(R.id.emailId)
     FontEditText emailId;

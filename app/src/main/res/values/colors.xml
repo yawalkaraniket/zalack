@@ -6,4 +6,5 @@
     <color name="colorPrimaryDark">#3e206d</color>
     <color name="colorGreen">#8cba51</color>
     <color name="white">#FFFFFF</color>
+    <color name="black_transparent">#a000</color>
 </resources>

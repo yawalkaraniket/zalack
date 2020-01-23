@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/sad_panda"
+        android:contentDescription="@string/not_connected" />
+
+    <com.zalack.android.ui.common.FontTextView
+        android:id="@+id/fontTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_below="@id/image"
+        android:layout_margin="@dimen/button_text_size"
+        android:background="@color/black_transparent"
+        android:padding="@dimen/button_text_size"
+        android:text="@string/no_internet_connection_error"
+        android:textColor="@color/white"
+        android:textSize="@dimen/button_text_size" />
+
+</RelativeLayout>

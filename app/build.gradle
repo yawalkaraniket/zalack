@@ -69,4 +69,11 @@ dependencies {
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.1.0"
     implementation "androidx.lifecycle:lifecycle-runtime:2.1.0"
     implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"
+
+    // Dagger
+    implementation 'com.google.dagger:dagger:2.23.2'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
+
+    // Check the network state.
+    implementation 'com.job:droidnet:2.0.0'
 }

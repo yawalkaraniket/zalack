@@ -76,4 +76,8 @@ dependencies {
 
     // Check the network state.
     implementation 'com.job:droidnet:2.0.0'
+
+    // Animation library
+    implementation 'com.daimajia.easing:library:2.0@aar'
+    implementation 'com.daimajia.androidanimations:library:2.3@aar'
 }

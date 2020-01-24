@@ -2,18 +2,19 @@ package com.zalack.android.ui.activity;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.droidnet.DroidListener;
 import com.droidnet.DroidNet;
 import com.zalack.android.R;
+import com.zalack.android.ZalackApp;
+import com.zalack.android.data.ZalackPreferences;
 import com.zalack.android.data.room.viewmodel.UserViewModel;
 import com.zalack.android.ui.common.FontEditText;
 import com.zalack.android.ui.common.FontTextView;
 import com.zalack.android.utils.DialogUtils;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +31,9 @@ public class LoginActivity extends BaseActivity implements DroidListener {
     @BindView(R.id.sign_in_button)
     FontTextView signInButton;
 
+    @Inject
+    ZalackPreferences prefs;
+
     UserViewModel userViewModel;
     private DroidNet mDroidNet;
     Dialog dialog;
@@ -40,16 +44,23 @@ public class LoginActivity extends BaseActivity implements DroidListener {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+        init();
+    }
+
+    private void init() {
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         mDroidNet = DroidNet.getInstance();
         mDroidNet.addInternetConnectivityListener(this);
+
+        ((ZalackApp)getApplicationContext()).getMyComponent().inject(this);
     }
 
     @OnClick(R.id.sign_in_button)
     public void signIn() {
+
         userViewModel.create(emailId.getText().toString(), password.getText().toString());
         userViewModel.getUsers().observe(this, users -> {
-            Log.e("Database", users.get(0).getId() + users.get(0).getPassword());
+//            Log.e("Database", users.get(0).getId() + users.get(0).getPassword());
         });
     }
 

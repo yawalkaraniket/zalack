@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/actvity_login_background"
+    android:id="@+id/actvity_login_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundColor"
@@ -10,9 +10,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,7 +25,6 @@
                 android:layout_height="match_parent"
                 android:contentDescription="login_image"
                 android:src="@mipmap/ic_launcher"
-                android:layout_margin="@dimen/large_button_height"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -37,34 +35,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="50dp"
-                android:padding="6dp"
                 android:orientation="vertical"
+                android:padding="6dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/login_image">
 
                 <com.zalack.android.ui.common.FontTextView
+                    android:id="@+id/error_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/enter_email" />
+                    android:text="@string/empty_field"
+                    android:textColor="@color/red"
+                    android:visibility="gone" />
 
                 <com.zalack.android.ui.common.FontEditText
                     android:id="@+id/emailId"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="40dp" />
+                    android:layout_height="@dimen/large_button_height"
+                    android:layout_marginBottom="40dp"
+                    android:hint="@string/enter_email" />
 
                 <com.zalack.android.ui.common.FontTextView
+                    android:id="@+id/error_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/enter_password" />
+                    android:text="@string/empty_field"
+                    android:textColor="@color/red"
+                    android:visibility="gone" />
 
                 <com.zalack.android.ui.common.FontEditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="40dp" />
+                    android:layout_height="@dimen/large_button_height"
+                    android:layout_marginBottom="40dp"
+                    android:hint="@string/enter_password" />
 
                 <com.zalack.android.ui.common.FontTextView
                     android:id="@+id/sign_in_button"
@@ -72,15 +78,25 @@
                     android:layout_height="@dimen/large_button_height"
                     android:layout_gravity="center"
                     android:layout_margin="12dp"
-                    android:background="@drawable/green_round_rectangle_30"
+                    android:textSize="@dimen/button_text_size"
+                    android:background="@drawable/app_default_color_round_rectangle_30"
                     android:elevation="@dimen/elevation_4"
                     android:gravity="center"
+                    android:textColor="@color/white"
                     android:paddingLeft="30dp"
                     android:paddingTop="10dp"
                     android:paddingRight="30dp"
                     android:paddingBottom="10dp"
-                    android:text="@string/sign_in"/>
+                    android:text="@string/sign_in" />
             </LinearLayout>
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/error_image_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="login_image" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

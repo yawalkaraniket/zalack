@@ -1,9 +1,16 @@
 package com.zalack.android.utils;
 
 import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.transition.Fade;
+import androidx.transition.Transition;
+import androidx.transition.TransitionManager;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+
+import java.security.acl.Group;
 
 public class AnimationUtils {
 
@@ -26,6 +33,12 @@ public class AnimationUtils {
                 .duration(duration)
                 .repeat(repeatCount)
                 .playOn(view);
+    }
+
+    public static void fadeAnimation(long duration, ViewGroup view) {
+        Transition transition = new Fade();
+        transition.setDuration(duration);
+        TransitionManager.beginDelayedTransition(view, transition);
     }
 
 }

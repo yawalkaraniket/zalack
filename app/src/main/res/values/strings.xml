@@ -10,6 +10,9 @@
     <string name="not_connected">Not connected</string>
     <string name="no_internet_connection_error">Oh no! No Internet connection. Make sure that Wi-Fi or cellular mobile data is turned on then try again.</string>
 
+    // Errors
+    <string name="empty_field">Field should not be empty</string>
+
     // Api key
     <string name="api_key">289060a43d2be28c3d49f17ae094abe5</string>
 </resources>

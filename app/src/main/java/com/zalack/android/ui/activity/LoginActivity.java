@@ -2,6 +2,8 @@ package com.zalack.android.ui.activity;
 
 import android.app.Dialog;
 import android.os.Bundle;
+
+import androidx.constraintlayout.widget.Group;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.droidnet.DroidListener;

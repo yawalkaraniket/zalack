@@ -3,7 +3,7 @@ package com.zalack.android;
 import android.app.Application;
 
 import com.droidnet.DroidNet;
-import com.zalack.android.dagger.DaggerPreferenceComponent;
+import com.zalack.android.dagger.component.DaggerPreferenceComponent;
 import com.zalack.android.dagger.component.PreferenceComponent;
 import com.zalack.android.dagger.module.SharedPreferencesModule;
 

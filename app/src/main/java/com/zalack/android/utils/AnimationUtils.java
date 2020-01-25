@@ -10,8 +10,6 @@ import androidx.transition.TransitionManager;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
-import java.security.acl.Group;
-
 public class AnimationUtils {
 
     public static void runAnimation(View view, Techniques techniques) {

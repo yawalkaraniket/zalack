@@ -2,8 +2,142 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.OnboardingActivity">
 
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_margin="@dimen/large_button_height"
+        android:padding="@dimen/button_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/username"
+        app:layout_constraintEnd_toEndOf="@+id/username"
+        app:layout_constraintStart_toStartOf="@+id/username"
+        android:scaleType="centerCrop"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:contentDescription="@string/title_image" />
+
+    <com.zalack.android.ui.common.FontEditText
+        android:id="@+id/username"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/enter_email"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintEnd_toEndOf="@+id/password"
+        app:layout_constraintStart_toStartOf="@+id/password" />
+
+    <com.zalack.android.ui.common.FontEditText
+        android:id="@+id/password"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/enter_password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintEnd_toEndOf="@+id/login"
+        app:layout_constraintStart_toStartOf="@+id/login" />
+
+    <com.zalack.android.ui.common.FontTextView
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_margin="@dimen/large_button_height"
+        android:layout_height="@dimen/large_button_height"
+        android:text="@string/submit"
+        android:paddingLeft="@dimen/button_text_size"
+        android:paddingRight="@dimen/button_text_size"
+        android:paddingTop="@dimen/elevation_4"
+        android:paddingBottom="@dimen/elevation_4"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@drawable/app_default_color_round_rectangle_30"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.zalack.android.ui.common.FontTextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/large_button_height"
+        android:padding="@dimen/button_text_size"
+        android:text="@string/please_select_your_gender_to_continue"
+        android:textSize="@dimen/button_text_size"
+        android:textColor="@color/black_transparent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/maleImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="@dimen/elevation_4"
+        android:scaleType="centerCrop"
+        android:src="@drawable/male_icon"
+        app:layout_constraintBottom_toTopOf="@+id/selectedImagePlaceHolder"
+        app:layout_constraintEnd_toStartOf="@+id/femaleImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <ImageView
+        android:id="@+id/femaleImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="@dimen/elevation_4"
+        android:scaleType="centerCrop"
+        android:src="@drawable/female_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/selectedImagePlaceHolder"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <ImageView
+        android:id="@+id/otherImage"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:padding="@dimen/elevation_4"
+        android:src="@drawable/other_icon"
+        app:layout_constraintBottom_toTopOf="@+id/selectedImagePlaceHolder"
+        app:layout_constraintEnd_toEndOf="@+id/title"
+        app:layout_constraintStart_toEndOf="@+id/femaleImage"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/gender_groups"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="femaleImage,maleImage,otherImage,selectedImagePlaceHolder,title"/>
+
+    <androidx.constraintlayout.widget.Placeholder
+        android:id="@+id/selectedImagePlaceHolder"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_margin="@dimen/button_text_size"
+        android:padding="@dimen/large_button_height"
+        android:scaleType="centerCrop"
+        android:src="@drawable/app_icon"
+        app:layout_constraintBottom_toTopOf="@+id/start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <com.zalack.android.ui.common.FontTextView
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/large_button_height"
+        android:background="@drawable/app_default_color_round_rectangle_30" android:text="Get Started"
+        android:textSize="@dimen/button_text_size"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/large_button_height"
+        android:paddingRight="@dimen/button_text_size"
+        android:paddingLeft="@dimen/button_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

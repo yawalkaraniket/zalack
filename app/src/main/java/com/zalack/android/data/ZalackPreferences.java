@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 
 import javax.inject.Inject;
 
-
+// Reference Dagger : https://android.jlelse.eu/dagger-2-the-simplest-approach-3e23502c4cab
 public class ZalackPreferences{
 
     private SharedPreferences mSharedPreferences;

@@ -66,7 +66,8 @@ public class MainActivity extends BaseActivity implements DroidListener {
 
     @OnClick(R.id.activityMain_btn_Register)
     public void register() {
-
+        Intent intent = new Intent(this, OnboardingActivity.class);
+        this.startActivity(intent);
     }
 
     @Override

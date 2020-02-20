@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:elevation="@dimen/elevation_4"
+    android:layout_margin="10dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/display_details_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="100dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/arrow_right_black_24dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp"
+            android:layout_weight="3">
+
+            <TextView
+                android:id="@+id/task_name"
+                android:layout_weight="1"
+                android:text="Company Name"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/task_description"
+                android:layout_weight="1"
+                android:text="Task Description"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/edit_details_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="3"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/task_name_edit"
+                android:layout_weight="1"
+                android:text="Task Name"
+                android:minLines="2"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+            <EditText
+                android:id="@+id/task_description_edit"
+                android:layout_weight="1"
+                android:text="Task Name"
+                android:minLines="2"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mobile"
+                    android:layout_margin="@dimen/button_text_size"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mobile"
+                    android:layout_margin="@dimen/button_text_size"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mobile"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/button_text_size"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="@dimen/elevation_4"
+            android:layout_margin="-5dp"
+            android:src="@drawable/ic_edit_black_24dp"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

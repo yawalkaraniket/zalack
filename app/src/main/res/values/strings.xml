@@ -1,12 +1,20 @@
 <resources>
-    <string name="app_name">Zalack</string>
+    <string name="app_name">Zalck</string>
     <string name="font_bold_averta" translatable="false">fonts/hinted-Averta-Bold.ttf</string>
+    <string name="app_subtitle">Let\'s Organize Your Work</string>
     <string name="enter_email">Enter your email…</string>
     <string name="enter_password">Enter your password…</string>
     <string name="sign_in">Sign In</string>
     <string name="register">Register</string>
     <string name="loading_generic_message">loading…</string>
     <string name="connected">Connected</string>
+    <string name="mobile">Mobile</string>
+    <string name="password">Password</string>
+    <string name="signup">SignUp</string>
+    <string name="dont_have_an_account_signup">Don\'t Have an Account? SignUp</string>
+    <string name="already_have_an_account_signin">Already Have an Account? SignIn</string>
+    <string name="forgot_password_click_hear_to_reset">Forgot Password? Click hear to reset</string>
+    <string name="signin">SignIn</string>
     <string name="not_connected">Not connected</string>
     <string name="no_internet_connection_error">Oh no! No Internet connection. Make sure that Wi-Fi or cellular mobile data is turned on then try again.</string>
 
@@ -18,5 +26,21 @@
     <string name="title_image">title_image</string>
     <string name="submit">Submit</string>
     <string name="please_select_your_gender_to_continue">Please select your gender to continue</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="accept_terms_and_conditions">Accept Terms and Conditions</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="logout">Logout</string>
+    <string name="change_password">Change Password</string>
+    <string name="my_profile">My Profile</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="project_name_tasks">Project Name Tasks</string>
+    <string name="user_name">User Name</string>
+    <string name="my_projects">My Projects</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>
 

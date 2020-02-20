@@ -5,9 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.zalack.android.dagger.scope.MyApplicationScope;
-import com.zalack.android.data.ZalackPreferences;
-
-import javax.inject.Inject;
 
 import dagger.Module;
 import dagger.Provides;

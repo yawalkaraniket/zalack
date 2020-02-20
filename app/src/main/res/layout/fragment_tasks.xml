@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.TasksFragment">
+
+    <com.zalack.android.ui.common.FontTextView
+        android:id="@+id/header_title"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/large_button_height"
+        android:gravity="center"
+        android:text="@string/project_name_tasks"
+        android:textSize="@dimen/button_text_size" />
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:layout_below="@id/header_title"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_below="@id/separator"
+        android:layout_width="match_parent"
+        android:background="@color/grayLittleDark"
+        android:layout_height="40dp"
+        app:tabMode="fixed"
+        android:elevation="@dimen/elevation_4"
+        app:tabGravity="fill"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/tabs_pager"
+        android:background="@color/grayLight"
+        android:layout_below="@id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>

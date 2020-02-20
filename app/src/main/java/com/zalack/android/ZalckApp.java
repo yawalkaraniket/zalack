@@ -7,7 +7,7 @@ import com.zalack.android.dagger.component.DaggerPreferenceComponent;
 import com.zalack.android.dagger.component.PreferenceComponent;
 import com.zalack.android.dagger.module.SharedPreferencesModule;
 
-public class ZalackApp extends Application {
+public class ZalckApp extends Application {
 
     PreferenceComponent preferenceComponent;
 

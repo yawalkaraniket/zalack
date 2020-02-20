@@ -14,14 +14,21 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class RetrofitInstance {
 
     private static Retrofit retrofit = null;
-    private static String BASE_URL = "https://api.themoviedb.org/3/";
+    private static String BASE_URL = "https://app-task-management.herokuapp.com/api/";
 
-    public static ZalackService getService() {
+    public static ZalckService getService() {
 
+        /*
+         * OkHttp performs best when you create a single `OkHttpClient` instance and reuse it for all of
+         * your HTTP calls. This is because each client holds its own connection pool and thread pools.
+         * Reusing connections and threads reduces latency and saves memory. Conversely, creating a client
+         * for each request wastes resources on idle pools.
+         */
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
                 .connectTimeout(120, TimeUnit.SECONDS)
                 .readTimeout(120, TimeUnit.SECONDS)
                 .writeTimeout(120, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true)
                 .build();
 
         if (retrofit==null) {
@@ -38,6 +45,6 @@ public class RetrofitInstance {
                     .build();
         }
 
-        return retrofit.create(ZalackService.class);
+        return retrofit.create(ZalckService.class);
     }
 }

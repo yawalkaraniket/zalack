@@ -55,18 +55,21 @@ public class MainActivity extends BaseActivity implements DroidListener {
 
     @OnClick(R.id.activityMain_btn_SignIn)
     public void signIn() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        this.startActivity(intent);
+/*
         showProgress();
         moviesViewModel.getAllMovies().observe(this, movieResponses -> {
             // All response comes hear.
             hideProgress();
-            Intent intent = new Intent(this, LoginActivity.class);
-            this.startActivity(intent);
+
         });
+*/
     }
 
     @OnClick(R.id.activityMain_btn_Register)
     public void register() {
-        Intent intent = new Intent(this, OnboardingActivity.class);
+        Intent intent = new Intent(this, SignUpActivity.class);
         this.startActivity(intent);
     }
 

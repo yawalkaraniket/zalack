@@ -1,17 +1,20 @@
 package com.zalack.android.ui.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.zalack.android.R;
 import com.zalack.android.ZalckApp;
@@ -28,7 +31,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class InProgressListFragment extends BaseFragment {
+public class InProgressListFragment extends BaseFragment implements TaskListAdapter.OnItemClickListener {
 
     @BindView(R.id.not_tickets)
     TextView noTicketsView;
@@ -54,7 +57,7 @@ public class InProgressListFragment extends BaseFragment {
         ((ZalckApp) this.getContext().getApplicationContext()).getMyComponent().inject(this);
 
         inProgressTickets.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        adapter = new TaskListAdapter(this.getContext());
+        adapter = new TaskListAdapter(this.getContext(), this, TaskListAdapter.IN_PROGRESS);
 
         if (inProgressList.isEmpty()) {
             getAllTickets();
@@ -71,7 +74,7 @@ public class InProgressListFragment extends BaseFragment {
 
         projectTicketsViewModel = ViewModelProviders.of(this).get(ProjectTicketsViewModel.class);
         showProgress();
-        projectTicketsViewModel.getProjectTickets(prefs.getToken(), 1).observe(getViewLifecycleOwner(), tickets -> {
+        projectTicketsViewModel.getProjectTickets(prefs.getToken(), prefs.getCurrentProjectId()).observe(getViewLifecycleOwner(), tickets -> {
             hideProgress();
             switch (tickets.getStatus()) {
                 case SUCCESS:
@@ -91,7 +94,8 @@ public class InProgressListFragment extends BaseFragment {
                     }
                     break;
                 case ERROR:
-                    Toast.makeText(this.getContext(), "Unable to load data", Toast.LENGTH_SHORT).show();
+                    noTicketsView.setVisibility(View.VISIBLE);
+                    inProgressTickets.setVisibility(View.GONE);
                     break;
             }
         });
@@ -101,4 +105,46 @@ public class InProgressListFragment extends BaseFragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("task_status_changed");
+        getActivity().registerReceiver(broadcastReceiver, filter);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        if (getActivity() != null && broadcastReceiver != null) {
+            getActivity().unregisterReceiver(broadcastReceiver);
+        }
+    }
+
+
+    @Override
+    public void onItemClick(View view, int position) {
+
+    }
+
+    @Override
+    public void onItemClick(int id, int position) {
+
+    }
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction() != null) {
+                if (intent.getAction().equals("task_status_changed")) {
+                    if (projectTicketsViewModel!=null) {
+                        adapter.clearList();
+                        getAllTickets();
+                    }
+                }
+            }
+        }
+    };
 }

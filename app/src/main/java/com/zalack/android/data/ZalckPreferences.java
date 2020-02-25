@@ -12,6 +12,8 @@ public class ZalckPreferences {
     private final String TOKEN = "token";
     private final String USER_NAME = "name";
     private final String MOBILE_NUMBER = "mobile";
+    private final String CURRENT_PROJECT_ID = "Project ID";
+    private final String CURRENT_PROJECT_NAME = "Project Name";
 
     @Inject
     public ZalckPreferences(SharedPreferences mSharedPreferences) {
@@ -24,6 +26,14 @@ public class ZalckPreferences {
 
     public void setMobileNumber(String number) {
         putData(MOBILE_NUMBER, number);
+    }
+
+    public void setCurrentProjectId(int projectId) {
+        putData(CURRENT_PROJECT_ID, projectId);
+    }
+
+    public void setProjectName(String projectName) {
+        putData(CURRENT_PROJECT_NAME, projectName);
     }
 
     public void setToken(String token) {
@@ -42,12 +52,26 @@ public class ZalckPreferences {
         return mSharedPreferences.getString(TOKEN, null);
     }
 
-    public String getUserName() {
+    public String getName() {
         return mSharedPreferences.getString(USER_NAME, "");
     }
 
     public String getNumber() {
         return mSharedPreferences.getString(MOBILE_NUMBER, "");
+    }
+
+    public int getCurrentProjectId() {
+        try {
+            return mSharedPreferences.getInt(CURRENT_PROJECT_ID, -1);
+        } catch (Exception e) {
+            setCurrentProjectId(-1);
+            return mSharedPreferences.getInt(CURRENT_PROJECT_ID, -1);
+
+        }
+    }
+
+    public String getCurrentProjectName() {
+        return mSharedPreferences.getString(CURRENT_PROJECT_NAME, "");
     }
 
     public void putData(String key, int data) {

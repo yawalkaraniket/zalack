@@ -20,6 +20,7 @@ import com.zalack.android.data.room.viewmodel.UserViewModel;
 import com.zalack.android.data.webservice.viewmodel.LoginViewModel;
 import com.zalack.android.ui.common.FontEditText;
 import com.zalack.android.utils.DialogUtils;
+import com.zalack.android.utils.UIUtils;
 
 import java.util.HashMap;
 
@@ -28,6 +29,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnEditorAction;
 
 public class LoginActivity extends BaseActivity implements DroidListener {
 
@@ -43,7 +45,7 @@ public class LoginActivity extends BaseActivity implements DroidListener {
     @BindView(R.id.do_not_have_account)
     TextView notHaveAccount;
 
-    @BindView(R.id.actvity_login_container)
+    @BindView(R.id.activity_login_container)
     ConstraintLayout parentLayout;
 
     @Inject
@@ -137,5 +139,15 @@ public class LoginActivity extends BaseActivity implements DroidListener {
         } else if (dialog != null) {
             dialog.dismiss();
         }
+    }
+
+    @OnClick(R.id.parent_constrant_layout)
+    public void rootLayout() {
+        UIUtils.hideKeyboard(this);
+    }
+
+    @OnEditorAction(R.id.et_password)
+    public void editorAction() {
+        signIn();
     }
 }

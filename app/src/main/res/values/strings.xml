@@ -42,5 +42,37 @@
     <string name="user_name">User Name</string>
     <string name="my_projects">My Projects</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="project_name">Project Name</string>
+    <string name="project_link">Project Link</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit_project_details">Edit Project Details</string>
+    <string name="add_your_project_details">Add Your Project Details</string>
+    <string name="add_project">Add Project</string>
+    <string name="clear">Clear</string>
+    <string name="edit_project">Edit Project</string>
+    <string name="no_projects_available">No Projects Available</string>
+    <string name="no_tickets_available">No Tickets Available</string>
+    <string name="todo">To Do</string>
+    <string name="in_progress">IN PROGRESS</string>
+    <string name="done">DONE</string>
+    <string name="create_new_ticket">Create New Ticket</string>
+    <string name="delete">Delete</string>
+    <string name="ticket_name">Ticket Name</string>
+    <string name="ticket_description">Ticket Description</string>
+    <string name="update">Update</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
+    <string name="add_your_ticket_details">Add Your Ticket Details</string>
+    <string name="projects">Projects</string>
+    <string name="tasks">Tasks</string>
+    <string name="profile">Profile</string>
+    <string-array name="ticket_status">
+        <item>TODO</item>
+        <item>IN PROGRESS</item>
+        <item>DONE</item>
+    </string-array>
 </resources>
 

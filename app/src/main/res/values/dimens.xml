@@ -2,5 +2,8 @@
 <resources>
     <dimen name="elevation_4">4dp</dimen>
     <dimen name="large_button_height">50dp</dimen>
+    <dimen name="edit_text_size">40dp</dimen>
     <dimen name="button_text_size">16sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="field_title_size">20dp</dimen>
 </resources>

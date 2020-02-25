@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grayLight"
     tools:context=".ui.fragment.ProfileFragment">
 
     <LinearLayout
@@ -24,6 +23,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:elevation="@dimen/elevation_4"
             android:background="@color/black" />
 
         <LinearLayout
@@ -91,19 +91,20 @@
             android:layout_below="@+id/profile_info_layout">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
-                android:src="@color/black"/>
+                android:src="@drawable/update_profile_icon"/>
 
             <com.zalack.android.ui.common.FontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="@color/black"
                 android:text="@string/update_profile" />
         </LinearLayout>
 
@@ -120,19 +121,20 @@
             android:layout_below="@+id/update_profile">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
-                android:src="@color/black"/>
+                android:src="@drawable/change_password_icon"/>
 
             <com.zalack.android.ui.common.FontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="@color/black"
                 android:text="@string/change_password" />
         </LinearLayout>
 
@@ -149,19 +151,20 @@
             android:layout_below="@+id/change_password">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
-                android:src="@color/black"/>
+                android:src="@drawable/logout_icon"/>
 
             <com.zalack.android.ui.common.FontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="@color/black"
                 android:text="@string/logout" />
         </LinearLayout>
 

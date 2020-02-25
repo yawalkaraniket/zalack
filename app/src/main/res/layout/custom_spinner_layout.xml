@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zalack.android.ui.common.FontTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@android:id/text1"
+    android:textAppearance="?android:attr/textAppearanceLargePopupMenu"
+    android:singleLine="true"
+    android:layout_height="40dp"
+    android:ellipsize="marquee"
+    android:gravity="center"
+    android:background="@drawable/drop_down_background"
+    android:padding="@dimen/elevation_4"
+    style="?android:attr/dropDownItemStyle">
+
+</com.zalack.android.ui.common.FontTextView>

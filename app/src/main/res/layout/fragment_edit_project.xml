@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rootLayout"
+    tools:context=".ui.fragment.EditProjectFragment">
+
+    <RelativeLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/large_button_height"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back_navigation"
+            android:layout_width="@dimen/large_button_height"
+            android:layout_height="match_parent"
+            android:padding="@dimen/elevation_4"
+            android:src="@drawable/left_black" />
+
+        <com.zalack.android.ui.common.FontTextView
+            android:id="@+id/header_title"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/large_button_height"
+            android:gravity="center"
+            android:text="@string/edit_project"
+            android:textSize="@dimen/button_text_size"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/button_text_size"
+        android:layout_marginTop="@dimen/large_button_height"
+        android:layout_marginRight="@dimen/button_text_size"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <com.zalack.android.ui.common.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/button_text_size"
+            android:text="@string/add_your_project_details"
+            android:textColor="@color/black"
+            android:textSize="@dimen/button_text_size" />
+
+        <com.zalack.android.ui.common.FontEditText
+            android:id="@+id/project_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/elevation_4"
+            android:layout_marginBottom="5dp"
+            android:autofillHints="@string/project_name"
+            android:hint="@string/project_name" />
+
+        <com.zalack.android.ui.common.FontEditText
+            android:id="@+id/project_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/elevation_4"
+            android:autofillHints="@string/project_link"
+            android:hint="@string/project_link" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btn_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/large_button_height"
+                android:layout_margin="@dimen/button_text_size"
+                android:background="@color/black"
+                android:text="@string/clear"
+                android:textColor="@color/white"
+                android:textSize="@dimen/button_text_size" />
+
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/large_button_height"
+                android:layout_margin="@dimen/button_text_size"
+                android:background="@color/black"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/button_text_size" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

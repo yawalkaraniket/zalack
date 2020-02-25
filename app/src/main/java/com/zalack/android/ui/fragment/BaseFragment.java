@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.zalack.android.R;
 import com.zalack.android.ui.common.FontTextView;
@@ -35,7 +36,6 @@ public class BaseFragment extends Fragment {
      *
      * @param layout Parent layout
      */
-
     protected void setUpProgress(View layout, Activity activity) {
 
         if (layout instanceof ConstraintLayout) {
@@ -45,9 +45,12 @@ public class BaseFragment extends Fragment {
             // Setting icon and color for the text view.
             progressBar = new ProgressBar(layout.getContext());
             progressBar.setId(R.id.navigation_layout_container);
-            progressBar.setLayoutParams(new LinearLayout.LayoutParams((int) (60 * dp()), (int) (60 * dp())));
+            progressBar.setElevation(10.0f);
+            progressBar.setPadding((int) (7 * dp()), (int) (7 * dp()), (int) (7 * dp()), (int) (7 * dp()));
+            progressBar.setBackgroundResource(R.drawable.white_circle);
+            progressBar.setLayoutParams(new LinearLayout.LayoutParams((int) (40 * dp()), (int) (40 * dp())));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                progressBar.setIndeterminateTintList(ColorStateList.valueOf(Color.GREEN));
+                progressBar.setIndeterminateTintList(ColorStateList.valueOf(Color.BLACK));
             } else {
                 // Add the code for below API 21.
             }
@@ -87,12 +90,15 @@ public class BaseFragment extends Fragment {
             linearLayout.setOrientation(LinearLayout.VERTICAL);
 
             progressBar = new ProgressBar(layout.getContext());
+            progressBar.setElevation(10.0f);
+            progressBar.setBackgroundResource(R.drawable.white_circle);
+            progressBar.setPadding((int) (7 * dp()), (int) (7 * dp()), (int) (7 * dp()), (int) (7 * dp()));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                progressBar.setIndeterminateTintList(ColorStateList.valueOf(Color.GREEN));
+                progressBar.setIndeterminateTintList(ColorStateList.valueOf(Color.BLACK));
             } else {
                 // Add the code for below API 21.
             }
-            progressBar.setLayoutParams(new LinearLayout.LayoutParams((int) (60 * dp()), (int) (60 * dp())));
+            progressBar.setLayoutParams(new LinearLayout.LayoutParams((int) (40 * dp()), (int) (40 * dp())));
 
             RelativeLayout.LayoutParams params;
             linearLayout.setLayoutParams(params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -110,7 +116,6 @@ public class BaseFragment extends Fragment {
             blockLayout = new RelativeLayout(activity);
             blockLayout.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             relativeLayout.addView(blockLayout);
-            blockLayout.setBackgroundColor(getResources().getColor(R.color.black_transparent));
             blockLayout.setOnClickListener(click -> {
             });
 

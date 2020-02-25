@@ -5,6 +5,7 @@
     android:elevation="@dimen/elevation_4"
     android:layout_margin="10dp"
     android:minHeight="100dp"
+    android:id="@+id/project_parent_layout"
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -18,7 +19,7 @@
             android:id="@+id/image_view"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/arrow_right_black_24dp"/>
 
 
@@ -26,26 +27,49 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="15dp"
             android:layout_weight="3">
 
             <TextView
                 android:id="@+id/project_name"
-                android:layout_weight="1"
-                android:text="Project Name"
+                android:text="@string/project_name"
                 android:layout_marginBottom="10dp"
                 android:gravity="center_vertical"
                 android:layout_width="match_parent"
+                android:textStyle="bold"
+                android:textSize="@dimen/button_text_size"
+                android:textColor="@color/black"
                 android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/project_link"
-                android:layout_weight="1"
-                android:text="Project Link"
+                android:text="@string/project_link"
                 android:gravity="center_vertical"
                 android:layout_width="match_parent"
+                android:textColor="@color/black"
                 android:layout_height="wrap_content"/>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/delete_project"
+            android:layout_margin="-4dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/delete_icon"
+            android:layout_marginBottom="7dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/edit_project"
+            android:layout_margin="-4dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_edit_black_24dp" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

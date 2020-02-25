@@ -25,6 +25,7 @@
         android:id="@+id/navigation_layout_container"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:paddingBottom="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:orientation="horizontal"
         android:weightSum="3"
@@ -41,14 +42,14 @@
                 android:id="@+id/projects_selection_image"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@color/black"
+                android:src="@drawable/projects_tab_icon"
                 android:layout_margin="@dimen/elevation_4"/>
             <TextView
                 android:id="@+id/projects_selection_text"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Projects"/>
+                android:text="@string/projects"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/tasks_selection"
@@ -62,14 +63,14 @@
                 android:id="@+id/tasks_selection_image"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@color/black"
+                android:src="@drawable/tasks_tab_icon"
                 android:layout_margin="@dimen/elevation_4"/>
             <TextView
                 android:id="@+id/tasks_selection_text"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tasks"/>
+                android:text="@string/tasks"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/profile_selection"
@@ -83,14 +84,14 @@
                 android:id="@+id/profile_selection_image"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@color/black"
+                android:src="@drawable/profile_tab_icon"
                 android:layout_margin="@dimen/elevation_4"/>
             <TextView
                 android:id="@+id/profile_selection_text"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Profile"/>
+                android:text="@string/profile"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -1,18 +1,20 @@
 package com.zalack.android.ui.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.zalack.android.R;
 import com.zalack.android.ZalckApp;
@@ -29,7 +31,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DoneListFragment extends BaseFragment {
+public class DoneListFragment extends BaseFragment implements TaskListAdapter.OnItemClickListener {
 
     @BindView(R.id.not_tickets)
     TextView noTicketsView;
@@ -43,6 +45,7 @@ public class DoneListFragment extends BaseFragment {
     private ProjectTicketsViewModel projectTicketsViewModel;
     private List<Ticket> doneTicketsList = new ArrayList<>();
     private TaskListAdapter taskListAdapter;
+    boolean isVisible = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,7 +58,7 @@ public class DoneListFragment extends BaseFragment {
         ((ZalckApp) this.getContext().getApplicationContext()).getMyComponent().inject(this);
 
         doneTicketsRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        taskListAdapter = new TaskListAdapter(this.getContext());
+        taskListAdapter = new TaskListAdapter(this.getContext(), this, TaskListAdapter.DONE);
 
         if (doneTicketsList.isEmpty()) {
             getAllTickets();
@@ -91,7 +94,8 @@ public class DoneListFragment extends BaseFragment {
                     }
                     break;
                 case ERROR:
-                    Toast.makeText(this.getContext(), "Unable to load data", Toast.LENGTH_SHORT).show();
+                    noTicketsView.setVisibility(View.VISIBLE);
+                    doneTicketsRecyclerView.setVisibility(View.GONE);
                     break;
             }
         });
@@ -99,6 +103,56 @@ public class DoneListFragment extends BaseFragment {
 
     public DoneListFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+
+    }
+
+    @Override
+    public void onItemClick(int id, int position) {
+
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("task_status_changed");
+        getActivity().registerReceiver(broadcastReceiver, filter);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        if (getActivity() != null && broadcastReceiver != null) {
+            getActivity().unregisterReceiver(broadcastReceiver);
+        }
+    }
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction() != null) {
+                if (intent.getAction().equals("task_status_changed")) {
+                    if (projectTicketsViewModel != null) {
+                        taskListAdapter.clearList();
+                        if (isVisible) {
+                            getAllTickets();
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        isVisible = isVisibleToUser;
     }
 
 }

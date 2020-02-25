@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.zalack.android.ui.fragment.ProjectTabHostFragment;
 import com.zalack.android.ui.fragment.ProfileFragment;
-import com.zalack.android.ui.fragment.ProjectsFragment;
 import com.zalack.android.ui.fragment.TasksFragment;
 
 public class NavigationPagerAdapter extends FragmentStatePagerAdapter {
@@ -32,7 +32,7 @@ public class NavigationPagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                fragmentClass  = ProjectsFragment.class;
+                fragmentClass  = ProjectTabHostFragment.class;
                 break;
             case 1:
                 fragmentClass = TasksFragment.class;

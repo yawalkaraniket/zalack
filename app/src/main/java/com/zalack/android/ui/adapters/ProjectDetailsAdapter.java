@@ -15,13 +15,17 @@ import com.zalack.android.data.models.all_projects.ProjectData;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ProjectDetailsAdapter extends RecyclerView.Adapter<ProjectDetailsAdapter.ProjectDetailsAdapterViewHolder> {
 
     private Context context;
     private List<ProjectData> projects = new ArrayList<>();
+    private OnProjectClickListener listener;
 
-    public ProjectDetailsAdapter(Context context) {
+    public ProjectDetailsAdapter(Context context, OnProjectClickListener listener) {
         this.context = context;
+        this.listener = listener;
     }
 
     public void setList(List<ProjectData> list) {
@@ -37,7 +41,7 @@ public class ProjectDetailsAdapter extends RecyclerView.Adapter<ProjectDetailsAd
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.project_details_item_layout, parent, false);
 
-        return new ProjectDetailsAdapterViewHolder(view);
+        return new ProjectDetailsAdapterViewHolder(view, listener);
     }
 
     @Override
@@ -51,16 +55,34 @@ public class ProjectDetailsAdapter extends RecyclerView.Adapter<ProjectDetailsAd
         return projects.size();
     }
 
-    class ProjectDetailsAdapterViewHolder extends RecyclerView.ViewHolder {
+    class ProjectDetailsAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView projectName;
-        TextView projectLink;
+        TextView projectName, projectLink;
+        CircleImageView deleteProject;
+        CircleImageView editProject;
+        OnProjectClickListener listener;
 
-        ProjectDetailsAdapterViewHolder(@NonNull View itemView) {
+        ProjectDetailsAdapterViewHolder(@NonNull View itemView, OnProjectClickListener listener) {
             super(itemView);
 
             projectName = itemView.findViewById(R.id.project_name);
             projectLink = itemView.findViewById(R.id.project_link);
+            deleteProject = itemView.findViewById(R.id.delete_project);
+            editProject = itemView.findViewById(R.id.edit_project);
+
+            this.listener = listener;
+            deleteProject.setOnClickListener(this);
+            editProject.setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            listener.onItemClick(view, getAdapterPosition());
+        }
+    }
+
+    public interface OnProjectClickListener {
+        void onItemClick(View view, int position);
     }
 }

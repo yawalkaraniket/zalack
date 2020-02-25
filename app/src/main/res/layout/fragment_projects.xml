@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grayLight"
     tools:context=".ui.fragment.ProjectsFragment">
 
     <com.zalack.android.ui.common.FontTextView
@@ -11,24 +12,97 @@
         style="@style/TextAppearance.AppCompat.Headline"
         android:layout_width="match_parent"
         android:layout_height="@dimen/large_button_height"
+        android:background="@color/white"
         android:gravity="center"
         android:text="@string/my_projects"
         android:textSize="@dimen/button_text_size"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <View
         android:id="@+id/separator"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/header_title"/>
+        android:elevation="@dimen/elevation_4"
+        app:layout_constraintTop_toBottomOf="@+id/header_title" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/projects_recycler_view"
-        android:background="@color/grayLight"
+    <TextView
+        android:id="@+id/not_projects"
+        style="@style/TextAppearance.AppCompat.Headline"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="51dp"
+        android:background="@color/grayLight"
+        android:gravity="center"
+        android:text="@string/no_projects_available"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/separator" />
 
+    <RelativeLayout
+        android:id="@+id/layout_when_project_available"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="51dp">
 
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/projects_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/grayLight"
+                app:layout_constraintTop_toBottomOf="@+id/separator" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <ImageView
+            android:id="@+id/add_project_button"
+            android:layout_width="@dimen/large_button_height"
+            android:layout_height="@dimen/large_button_height"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/button_text_size"
+            android:background="@drawable/white_circle"
+            android:elevation="@dimen/button_text_size"
+            android:src="@drawable/add_icon" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_when_project_unavailable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_marginTop="51dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="@dimen/button_text_size">
+
+            <com.zalack.android.ui.common.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Projects Available"
+                android:textStyle="bold"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_margin="@dimen/button_text_size"/>
+
+            <Button
+                android:id="@+id/add_project_text_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="Add Project"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"/>
+        </LinearLayout>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

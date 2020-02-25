@@ -12,9 +12,9 @@
         android:gravity="center"
         android:textStyle="bold"
         android:background="@color/grayLight"
-        android:textSize="30sp"
+        android:textSize="20sp"
         style="@style/TextAppearance.AppCompat.Headline"
-        android:text="No Tickets Available"
+        android:text="@string/no_tickets_available"
         android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView

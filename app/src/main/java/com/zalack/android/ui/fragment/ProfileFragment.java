@@ -17,6 +17,7 @@ import com.zalack.android.R;
 import com.zalack.android.ZalckApp;
 import com.zalack.android.data.ZalckPreferences;
 import com.zalack.android.ui.activity.LoginActivity;
+import com.zalack.android.ui.activity.UpdateProfileActivity;
 
 import javax.inject.Inject;
 
@@ -72,7 +73,7 @@ public class ProfileFragment extends BaseFragment {
     private void setProfileData() {
 
         // Set name, email and mobile number.
-        userName.setText(prefs.getUserName());
+        userName.setText(prefs.getName());
         userEmail.setText(prefs.getEmail());
         mobileNumber.setText(prefs.getNumber());
 
@@ -103,6 +104,33 @@ public class ProfileFragment extends BaseFragment {
         this.getActivity().finish();
         Intent intent = new Intent(this.getActivity(), LoginActivity.class);
         this.getActivity().startActivity(intent);
+    }
+
+    @OnClick(R.id.change_password)
+    public void changePassword() {
+
+        Intent intent = new Intent(this.getActivity(), UpdateProfileActivity.class);
+        intent.putExtra("screen", UpdateProfileActivity.TYPE_CHANGE_PASSWORD);
+        this.getActivity().startActivity(intent);
+    }
+
+    @OnClick(R.id.update_profile)
+    public void updateProfile() {
+
+        Intent intent = new Intent(this.getActivity(), UpdateProfileActivity.class);
+        intent.putExtra("screen", UpdateProfileActivity.TYPE_UPDATE_PROFILE);
+        this.getActivity().startActivity(intent);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        userName.setText(prefs.getName());
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     public ProfileFragment() {

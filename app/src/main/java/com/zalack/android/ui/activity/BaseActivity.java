@@ -43,11 +43,13 @@ public class BaseActivity extends AppCompatActivity {
 
             // Setting icon and color for the text view.
             progressBar = new ProgressBar(layout.getContext());
-            progressBar.setBackgroundResource(R.mipmap.ic_launcher_round);
+            progressBar.setElevation(10.0f);
+            progressBar.setPadding((int) (7 * dp()), (int) (7 * dp()), (int) (7 * dp()), (int) (7 * dp()));
+            progressBar.setBackgroundResource(R.drawable.white_circle);
             progressBar.setId(R.id.navigation_layout_container);
-            progressBar.setLayoutParams(new LinearLayout.LayoutParams((int) (60 * dp()), (int) (60 * dp())));
+            progressBar.setLayoutParams(new LinearLayout.LayoutParams((int) (40 * dp()), (int) (40 * dp())));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                progressBar.setIndeterminateTintList(ColorStateList.valueOf(Color.WHITE));
+                progressBar.setIndeterminateTintList(ColorStateList.valueOf(Color.BLACK));
             } else {
                 // Add the code for below API 21.
             }
@@ -86,12 +88,15 @@ public class BaseActivity extends AppCompatActivity {
             linearLayout.setOrientation(LinearLayout.VERTICAL);
 
             progressBar = new ProgressBar(layout.getContext());
+            progressBar.setElevation(10.0f);
+            progressBar.setPadding((int) (7 * dp()), (int) (7 * dp()), (int) (7 * dp()), (int) (7 * dp()));
+            progressBar.setBackgroundResource(R.drawable.white_circle);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                progressBar.setIndeterminateTintList(ColorStateList.valueOf(Color.GREEN));
+                progressBar.setIndeterminateTintList(ColorStateList.valueOf(Color.BLACK));
             } else {
                 // Add the code for below API 21.
             }
-            progressBar.setLayoutParams(new LinearLayout.LayoutParams((int) (60 * dp()), (int) (60 * dp())));
+            progressBar.setLayoutParams(new LinearLayout.LayoutParams((int) (40 * dp()), (int) (40 * dp())));
 
             RelativeLayout.LayoutParams params;
             linearLayout.setLayoutParams(params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));

@@ -133,7 +133,7 @@
                     <com.zalack.android.ui.common.FontEditText
                         android:id="@+id/new_password_confirm"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/large_button_height"
+                        android:layout_height="@dimen/edit_text_size"
                         android:layout_marginLeft="@dimen/button_text_size"
                         android:layout_marginTop="15dp"
                         android:layout_marginRight="@dimen/button_text_size"

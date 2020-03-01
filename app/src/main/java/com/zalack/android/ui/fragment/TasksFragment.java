@@ -26,8 +26,11 @@ import com.zalack.android.ZalckApp;
 import com.zalack.android.data.ZalckPreferences;
 import com.zalack.android.data.models.project_tickets.Ticket;
 import com.zalack.android.data.webservice.viewmodel.ProjectTicketsViewModel;
+import com.zalack.android.ui.activity.NavigationActivity;
 import com.zalack.android.ui.activity.UpdateProfileActivity;
 import com.zalack.android.ui.common.FontTextView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +61,9 @@ public class TasksFragment extends BaseFragment {
     @BindView(R.id.not_tickets_layout)
     RelativeLayout noTicketsLayout;
 
+    @BindView(R.id.title)
+    FontTextView noTaskTitle;
+
     @BindView(R.id.create_new_ticket)
     Button createNewTicket;
 
@@ -65,7 +71,7 @@ public class TasksFragment extends BaseFragment {
     ZalckPreferences prefs;
 
     private FragmentActivity activity;
-    List<Ticket> tickets = new ArrayList<>();
+    private List<Ticket> tickets = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -110,14 +116,18 @@ public class TasksFragment extends BaseFragment {
     }
 
     @OnClick(R.id.create_new_ticket_circle_button)
-    public void addTask() {
-        Intent intent = new Intent(getActivity(), UpdateProfileActivity.class);
-        intent.putExtra(UpdateProfileActivity.SCREEN, UpdateProfileActivity.TYPE_CREATE_NEW_TICKET);
-        getActivity().startActivity(intent);
+    void addTask() {
+        if (prefs.getAllProjects() != null) {
+            Intent intent = new Intent(getActivity(), UpdateProfileActivity.class);
+            intent.putExtra(UpdateProfileActivity.SCREEN, UpdateProfileActivity.TYPE_CREATE_NEW_TICKET);
+            getActivity().startActivity(intent);
+        } else {
+            ((NavigationActivity) getActivity()).navigateToProfileFragment();
+        }
     }
 
     @OnClick(R.id.create_new_ticket)
-    public void createNewTicket() {
+    void createNewTicket() {
         addTask();
     }
 
@@ -126,6 +136,7 @@ public class TasksFragment extends BaseFragment {
         adapter.addFragment(new TodoListFragment(), "Todo");
         adapter.addFragment(new InProgressListFragment(), "In Progress");
         adapter.addFragment(new DoneListFragment(), "Done");
+        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
     }
 
@@ -133,10 +144,12 @@ public class TasksFragment extends BaseFragment {
 
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
+
         ViewPagerAdapter(FragmentManager manager) {
             super(manager);
         }
 
+        @NotNull
         @Override
         public Fragment getItem(int position) {
             return mFragmentList.get(position);
@@ -160,7 +173,6 @@ public class TasksFragment extends BaseFragment {
     }
 
     private void setLayoutAccordingToTickets() {
-        resetUI();
         ProjectTicketsViewModel projectTicketsViewModel = ViewModelProviders.of(this).get(ProjectTicketsViewModel.class);
         showProgress();
         projectTicketsViewModel.getProjectTickets(prefs.getToken(), prefs.getCurrentProjectId()).observe(getViewLifecycleOwner(), tickets -> {
@@ -168,7 +180,10 @@ public class TasksFragment extends BaseFragment {
             switch (tickets.getStatus()) {
                 case SUCCESS:
                     this.tickets = tickets.getData().getData();
-                    if (this.tickets.isEmpty()) {
+                    if (prefs.getAllProjects() == null) {
+                        createNewTicket.setText(R.string.add_project);
+                        noTaskTitle.setText(getResources().getString(R.string.add_first_project_title));
+                    } else if (this.tickets.isEmpty()) {
                         noTicketsLayout.setVisibility(View.VISIBLE);
                         pagerLayout.setVisibility(View.GONE);
                     } else {
@@ -179,6 +194,10 @@ public class TasksFragment extends BaseFragment {
                 case ERROR:
                     noTicketsLayout.setVisibility(View.VISIBLE);
                     pagerLayout.setVisibility(View.GONE);
+                    if (prefs.getAllProjects() == null) {
+                        createNewTicket.setText(R.string.add_project);
+                        noTaskTitle.setText(getResources().getString(R.string.add_first_project_title));
+                    }
                     break;
             }
         });
@@ -193,6 +212,8 @@ public class TasksFragment extends BaseFragment {
                     case "project_status_changed":
                         title.setText(prefs.getCurrentProjectName() + " " + "Tasks");
                         setLayoutAccordingToTickets();
+                        createNewTicket.setText(getResources().getString(R.string.add_task));
+                        noTaskTitle.setText(getResources().getString(R.string.create_a_task_n_succeed_a_project));
                         break;
                 }
             }

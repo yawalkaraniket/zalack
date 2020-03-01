@@ -42,10 +42,10 @@
 
     <RelativeLayout
         android:id="@+id/layout_when_project_available"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="51dp">
+        android:layout_marginTop="51dp"
+        android:visibility="gone">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh"
@@ -76,33 +76,40 @@
         android:id="@+id/layout_when_project_unavailable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
         android:layout_marginTop="51dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:gravity="center"
+            android:orientation="vertical"
             android:padding="@dimen/button_text_size">
 
             <com.zalack.android.ui.common.FontTextView
+                style="@style/TextAppearance.AppCompat.Headline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/button_text_size"
                 android:text="No Projects Available"
-                android:textStyle="bold"
-                style="@style/TextAppearance.AppCompat.Headline"
-                android:layout_margin="@dimen/button_text_size"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/add_project_text_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_background"
-                android:text="Add Project"
+                android:layout_width="150dp"
+                android:layout_height="50sp"
+                android:background="@drawable/circular_button_50"
+                android:elevation="@dimen/elevation_8"
+                android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:paddingLeft="10dp"/>
+                android:text="Add Project"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/elevation_8" />
         </LinearLayout>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

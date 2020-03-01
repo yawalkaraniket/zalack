@@ -32,8 +32,8 @@ public class AddProjectRepository {
                 .subscribeWith(new DisposableObserver<AddedProject>(){
 
                     @Override
-                    public void onNext(AddedProject signUp) {
-                        mutableLiveData.postSuccess(signUp);
+                    public void onNext(AddedProject addedProject) {
+                        mutableLiveData.postSuccess(addedProject);
                     }
 
                     @Override

@@ -100,10 +100,18 @@ public class ProfileFragment extends BaseFragment {
 
     @OnClick(R.id.logout)
     public void logOut() {
-        prefs.setToken(null);
+        clearAllPreferences();
         this.getActivity().finish();
         Intent intent = new Intent(this.getActivity(), LoginActivity.class);
         this.getActivity().startActivity(intent);
+    }
+
+    private void clearAllPreferences() {
+        prefs.setToken(null);
+        prefs.setProjects(null);
+        prefs.setCurrentProjectId(-1);
+        prefs.setProjectName(null);
+        prefs.setAppFirstLaunch(false);
     }
 
     @OnClick(R.id.change_password)

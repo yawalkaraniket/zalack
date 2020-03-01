@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.OnboardingFragment">
+
+    <ScrollView
+        android:id="@+id/scroll_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/button_text_size"
+            android:layout_margin="@dimen/button_text_size">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_up"
+                android:textColor="@color/black"
+                android:layout_marginBottom="@dimen/elevation_8"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:id="@+id/til_first_name"
+                android:layout_height="64dp"
+                app:hintAnimationEnabled="true"
+                app:hintTextAppearance="@style/HintText">
+
+                <com.zalack.android.ui.common.CustomInputEditText
+                    android:id="@+id/et_first_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:paddingLeft="@dimen/elevation_8"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/padding_6"
+                    android:background="@drawable/floating_edit_text_bg"
+                    android:hint="@string/first_name"
+                    android:inputType="text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:id="@+id/til_last_name"
+                android:layout_height="64dp"
+                app:hintAnimationEnabled="true"
+                app:hintTextAppearance="@style/HintText">
+
+                <com.zalack.android.ui.common.CustomInputEditText
+                    android:id="@+id/et_last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:paddingLeft="@dimen/elevation_8"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/padding_6"
+                    android:background="@drawable/floating_edit_text_bg"
+                    android:hint="@string/last_name"
+                    android:inputType="text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:id="@+id/til_email"
+                app:hintAnimationEnabled="true"
+                app:hintTextAppearance="@style/HintText">
+
+                <com.zalack.android.ui.common.CustomInputEditText
+                    android:id="@+id/et_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:paddingLeft="@dimen/elevation_8"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/padding_6"
+                    android:background="@drawable/floating_edit_text_bg"
+                    android:hint="@string/email"
+                    android:inputType="text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:id="@+id/til_mobile"
+                android:layout_height="64dp"
+                app:hintAnimationEnabled="true"
+                app:hintTextAppearance="@style/HintText">
+
+                <com.zalack.android.ui.common.CustomInputEditText
+                    android:id="@+id/et_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:paddingLeft="@dimen/elevation_8"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/padding_6"
+                    android:background="@drawable/floating_edit_text_bg"
+                    android:hint="@string/mobile"
+                    android:inputType="number"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_password"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                app:hintAnimationEnabled="true"
+                app:passwordToggleEnabled="true"
+                app:hintTextAppearance="@style/HintText">
+
+                <com.zalack.android.ui.common.CustomInputEditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:paddingLeft="@dimen/elevation_8"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/padding_6"
+                    android:background="@drawable/floating_edit_text_bg"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                app:hintAnimationEnabled="true"
+                app:hintTextAppearance="@style/HintText"
+                app:passwordToggleEnabled="true">
+
+                <com.zalack.android.ui.common.CustomInputEditText
+                    android:id="@+id/et_confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:paddingLeft="@dimen/elevation_8"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/padding_6"
+                    android:background="@drawable/floating_edit_text_bg"
+                    android:hint="@string/confirm_password"
+                    android:inputType="text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/container1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+
+                    android:id="@+id/accept_termas_and_condition"
+                    android:layout_width="@dimen/large_button_height"
+                    android:layout_height="@dimen/large_button_height" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/accept_terms_and_conditions"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_signUp"
+                android:layout_width="150dp"
+                android:layout_height="@dimen/large_button_height"
+                android:layout_marginTop="@dimen/button_text_size"
+                android:background="@drawable/circular_button_50"
+                android:text="@string/sign_up"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

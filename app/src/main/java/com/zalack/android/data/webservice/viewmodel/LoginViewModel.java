@@ -27,7 +27,9 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     public void clear() {
-        loginRepository.clear();
+        if (loginRepository!=null) {
+            loginRepository.clear();
+        }
     }
 
 }

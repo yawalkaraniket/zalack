@@ -5,17 +5,21 @@ import com.zalack.android.dagger.scope.MyApplicationScope;
 import com.zalack.android.data.webservice.viewmodel.SignUpViewModel;
 import com.zalack.android.ui.activity.LauncherActivity;
 import com.zalack.android.ui.activity.LoginActivity;
+import com.zalack.android.ui.activity.NavigationActivity;
 import com.zalack.android.ui.activity.SignUpActivity;
 import com.zalack.android.ui.activity.UpdateProfileActivity;
+import com.zalack.android.ui.common.NavigationPager;
 import com.zalack.android.ui.fragment.AddProjectFragment;
 import com.zalack.android.ui.fragment.CreateTicketFragment;
 import com.zalack.android.ui.fragment.DoneListFragment;
 import com.zalack.android.ui.fragment.EditProjectFragment;
 import com.zalack.android.ui.fragment.InProgressListFragment;
+import com.zalack.android.ui.fragment.OnboardingFragment;
 import com.zalack.android.ui.fragment.ProfileFragment;
 import com.zalack.android.ui.fragment.ProjectsFragment;
 import com.zalack.android.ui.fragment.TasksFragment;
 import com.zalack.android.ui.fragment.TodoListFragment;
+import com.zalack.android.ui.fragment.UserOnboardingFragment;
 
 import dagger.Component;
 
@@ -35,4 +39,7 @@ public interface PreferenceComponent {
     void inject(EditProjectFragment editProjectFragment);
     void inject(CreateTicketFragment createTicketFragment);
     void inject(TasksFragment tasksFragment);
+    void inject(OnboardingFragment onboardingFragment);
+    void inject(UserOnboardingFragment userOnboardingFragment);
+    void inject(NavigationActivity navigationActivity);
 }

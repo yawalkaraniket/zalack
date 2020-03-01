@@ -111,21 +111,22 @@ public class TodoListFragment extends BaseFragment implements TaskListAdapter.On
 
     private void getAllTickets() {
         projectTicketsViewModel = ViewModelProviders.of(this).get(ProjectTicketsViewModel.class);
-        adapter.clearList();
         showProgress();
         projectTicketsViewModel.getProjectTickets(prefs.getToken(), prefs.getCurrentProjectId()).observe(getViewLifecycleOwner(), tickets -> {
             hideProgress();
             switch (tickets.getStatus()) {
                 case SUCCESS:
+                    adapter.clearList();
+                    todoList.clear();
                     this.tickets = tickets.getData().getData();
-                    for (Ticket ticket: this.tickets) {
+                    for (Ticket ticket : this.tickets) {
                         if (ticket.getStatus().equals("todo")) {
                             todoList.add(ticket);
                         }
                     }
                     if (todoList.isEmpty()) {
-                     noTickets.setVisibility(View.VISIBLE);
-                     todoListRecyclerView.setVisibility(View.GONE);
+                        noTickets.setVisibility(View.VISIBLE);
+                        todoListRecyclerView.setVisibility(View.GONE);
                     } else {
                         noTickets.setVisibility(View.GONE);
                         todoListRecyclerView.setVisibility(View.VISIBLE);
@@ -162,13 +163,13 @@ public class TodoListFragment extends BaseFragment implements TaskListAdapter.On
     public void onItemClick(int id, int position) {
         switch (id) {
             case R.id.todo_button:
-                updateStatus("todo",position);
+                updateStatus("todo", position);
                 break;
             case R.id.inprogress_button:
-                updateStatus("inprogress", position);
+                updateStatus("in_progress", position);
                 break;
             case R.id.done_button:
-                updateStatus("done", position);
+                updateStatus("completed", position);
                 break;
             case R.id.delete_task:
                 deleteTask(position);
@@ -188,7 +189,7 @@ public class TodoListFragment extends BaseFragment implements TaskListAdapter.On
                             case SUCCESS:
                                 Toast.makeText(this.getContext(), response.getData().getMessage(), Toast.LENGTH_SHORT).show();
                                 todoList.clear();
-                                getAllTickets();
+                                adapter.clearList();
                                 this.getActivity().sendBroadcast(new Intent("task_status_changed"));
                                 break;
                             case ERROR:
@@ -217,7 +218,7 @@ public class TodoListFragment extends BaseFragment implements TaskListAdapter.On
                     switch (response.getStatus()) {
                         case SUCCESS:
                             todoList.clear();
-                            getAllTickets();
+                            getActivity().sendBroadcast(new Intent("task_status_changed"));
                             break;
                         case ERROR:
                             Toast.makeText(this.getContext(), "Unable to load data", Toast.LENGTH_SHORT).show();
@@ -231,9 +232,7 @@ public class TodoListFragment extends BaseFragment implements TaskListAdapter.On
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction() != null) {
                 if (intent.getAction().equals("task_status_changed")) {
-                    if (isVisible) {
-                        getAllTickets();
-                    }
+                    getAllTickets();
                 }
             }
         }

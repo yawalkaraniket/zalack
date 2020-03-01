@@ -13,4 +13,5 @@
     <color name="black">#000000</color>
     <color name="grayLight">#ededed</color>
     <color name="grayLittleDark">#D3D3D3</color>
+    <color name="gray_dark">#7c7d7c</color>
 </resources>

@@ -21,12 +21,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.zalack.android.R;
 import com.zalack.android.ZalckApp;
 import com.zalack.android.data.ZalckPreferences;
 import com.zalack.android.data.models.all_projects.ProjectData;
-import com.zalack.android.data.models.update_profile.UpdateProfile;
 import com.zalack.android.data.webservice.viewmodel.AllProjectsViewModel;
 import com.zalack.android.data.webservice.viewmodel.DeleteProjectViewModel;
 import com.zalack.android.ui.activity.NavigationActivity;
@@ -128,8 +126,8 @@ public class ProjectsFragment extends BaseFragment implements OnProjectClickList
         return layout;
     }
 
-    private void setTaskDataAfterAppInstall() {
-        if (!projectDataList.isEmpty() && prefs.getToken().isEmpty()) {
+    private void setDefaultTaskWhenNoTaskSelected() {
+        if (!(prefs.getAllProjects().isEmpty() && prefs.getToken().isEmpty()) && prefs.getCurrentProjectId() == -1) {
             prefs.setCurrentProjectId(projectDataList.get(0).getId());
             prefs.setProjectName(projectDataList.get(0).getName());
             this.getActivity().sendBroadcast(new Intent("task_status_changed"));
@@ -181,7 +179,6 @@ public class ProjectsFragment extends BaseFragment implements OnProjectClickList
     }
 
     private void getAllProjects() {
-        resetUI();
         allProjectsViewModel.getProjects(prefs.getToken()).observe(getViewLifecycleOwner(), projects -> {
             hideProgress();
             swipeRefreshLayout.setRefreshing(false);
@@ -193,11 +190,12 @@ public class ProjectsFragment extends BaseFragment implements OnProjectClickList
                         getLayoutWhenProjectNotAvailable.setVisibility(View.VISIBLE);
                     } else {
                         layoutWhenProjectAvailable.setVisibility(View.VISIBLE);
+                        prefs.setProjects(projectDataList);
                         getLayoutWhenProjectNotAvailable.setVisibility(View.GONE);
+                        projectDetailsAdapter.setList(projectDataList);
+                        projectsRecyclerView.setAdapter(projectDetailsAdapter);
+                        setDefaultTaskWhenNoTaskSelected();
                     }
-                    projectDetailsAdapter.setList(projectDataList);
-                    projectsRecyclerView.setAdapter(projectDetailsAdapter);
-                    setTaskDataAfterAppInstall();
                     break;
                 case ERROR:
                     Toast.makeText(this.getContext(), "Unable to load data", Toast.LENGTH_SHORT).show();

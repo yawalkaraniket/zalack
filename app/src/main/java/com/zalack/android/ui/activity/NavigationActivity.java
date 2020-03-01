@@ -8,17 +8,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.zalack.android.R;
+import com.zalack.android.ZalckApp;
+import com.zalack.android.data.ZalckPreferences;
+import com.zalack.android.data.models.all_projects.ProjectData;
+import com.zalack.android.data.webservice.viewmodel.AllProjectsViewModel;
 import com.zalack.android.ui.adapters.NavigationPagerAdapter;
 import com.zalack.android.ui.common.NavigationPager;
+
+import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class NavigationActivity extends AppCompatActivity {
+public class NavigationActivity extends BaseActivity {
 
     @BindView(R.id.projects_selection)
     LinearLayout navProjectSelection;
@@ -53,17 +60,25 @@ public class NavigationActivity extends AppCompatActivity {
     @BindView(R.id.navigation_layout_container)
     LinearLayout navigationContainer;
 
+    @Inject
+    ZalckPreferences prefs;
+
     AlertDialog.Builder builder;
     AlertDialog alert;
 
     public static String ADD_NEW_PROJECT = "Add New Project";
     public static String ADD_NEW_TASK = "Add New Task";
 
+    private AllProjectsViewModel allProjectsViewModel;
+    private List<ProjectData> projectDataList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         ButterKnife.bind(this);
+
+        ((ZalckApp) this.getApplicationContext()).getMyComponent().inject(this);
 
         builder = new AlertDialog.Builder(this);
         builder.setMessage("Do you want to exit ?")
@@ -102,6 +117,11 @@ public class NavigationActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     private void initializePager() {
         navigationPager.setOffscreenPageLimit(3);
         navigationPager.setAdapter(new NavigationPagerAdapter(getSupportFragmentManager(), this));
@@ -110,28 +130,28 @@ public class NavigationActivity extends AppCompatActivity {
     }
 
     private void resetAllNavigation() {
-//        projectSelectionImage.setImageResource(R.color.black);
+        projectSelectionImage.setColorFilter(R.color.black);
         projectSelectionText.setTextColor(getResources().getColor(R.color.black));
 
-//        profileSelectionImage.setImageResource(R.color.black);
+        profileSelectionImage.setColorFilter(R.color.black);
         profileSelectionText.setTextColor(getResources().getColor(R.color.black));
 
-//        taskSelectionImage.setImageResource(R.color.black);
+        taskSelectionImage.setColorFilter(R.color.black);
         tasksSelectionText.setTextColor(getResources().getColor(R.color.black));
     }
 
     private void setProjectSelection() {
-//        projectSelectionImage.setImageResource(R.color.blue);
+        projectSelectionImage.setColorFilter(R.color.blue);
         projectSelectionText.setTextColor(getResources().getColor(R.color.blue));
     }
 
     private void setTasksSelection() {
-//        taskSelectionImage.setImageResource(R.color.blue);
+        taskSelectionImage.setColorFilter(R.color.blue);
         tasksSelectionText.setTextColor(getResources().getColor(R.color.blue));
     }
 
     private void setProfileSelection() {
-//        profileSelectionImage.setImageResource(R.color.blue);
+        profileSelectionImage.setColorFilter(R.color.blue);
         profileSelectionText.setTextColor(getResources().getColor(R.color.blue));
     }
 
@@ -147,7 +167,9 @@ public class NavigationActivity extends AppCompatActivity {
     }
 
     public void navigateToProfileFragment() {
-    navigationPager.setCurrentItem(0);
+        resetAllNavigation();
+        setProjectSelection();
+        navigationPager.setCurrentItem(0);
     }
 
     public void navigateToTaskFragment() {
